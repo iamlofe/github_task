@@ -1,0 +1,57 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+
+    padding: 5px;
+}
+
+.search-container__button {
+    margin-top: 5px;
+}
+
+.search-container__main {
+    width: 30%;
+    padding: 10px;
+
+    border-radius: 5px;
+    background: #e8e8e8;
+}
+
+.search-container__input-container {
+    margin-bottom: 5px;
+    padding: 5px;
+
+    border-radius: 5px;
+    background: #f5f5f5;
+}
+
+.search-container__result {
+    padding: 5px;
+
+    border-radius: 5px;
+    background: #f5f5f5;
+}
+
+.search-container__people {
+    display: flex;
+    align-items: center;
+
+    margin: 3px;
+}
+
+.search-container__people-image {
+    width: 50px;
+    height: 50px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.search-container__people-login {
+    margin-left: 10px;
+}
+
+#search-container__link {
+    color: #262626;
+}

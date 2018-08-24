@@ -20,17 +20,16 @@ export const history = createBrowserHistory({});
 class App extends React.PureComponent {
   render() {
     return (
-      <div className="App">
-        <Provider store={store}>
-          <Router history={history}>
-            <Switch>
-              <Route component={BindSearch} path="/search" />
-              <Route component={BindUserProfile} path="/user" />
-              <Route path="*" component={Redirect} />
-            </Switch>
-          </Router>
-        </Provider>
-      </div>
+      <Provider store={store}>
+        <Router history={history}>
+          <Switch>
+            <Route component={BindUserProfile} path="/user" />
+            <Route component={BindSearch} path="/" exact />
+            <Redirect from="*" to="/" />
+            {/* <Route path="*" component={Redirect} /> */}
+          </Switch>
+        </Router>
+      </Provider>
     );
   }
 }

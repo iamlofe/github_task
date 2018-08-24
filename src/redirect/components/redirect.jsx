@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 class RedirectUser extends React.PureComponent {
   render() {
-    return <Redirect to="/search" />;
+    return <Redirect to="/" />;
   }
 }
 export default RedirectUser;

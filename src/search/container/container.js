@@ -1,7 +1,8 @@
 import Search from '../components/search';
 import { connect } from 'react-redux';
 import { onInputChange } from '../actions/actions';
-import _ from 'lodash';
+import { debounce } from 'lodash';
+
 export default connect(
   state => ({
     isLoading: state.searchReducer.get('isLoading'),
@@ -9,6 +10,6 @@ export default connect(
     users: state.searchReducer.get('users')
   }),
   dispatch => ({
-    onInputChange: _.debounce(value => dispatch(onInputChange(value)), 500)
+    onInputChange: debounce(value => dispatch(onInputChange(value)), 500)
   })
 )(Search);

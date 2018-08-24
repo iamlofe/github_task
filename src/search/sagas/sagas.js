@@ -1,18 +1,19 @@
 import { call, put, takeLatest, fork } from 'redux-saga/effects';
+import axios from 'axios';
+
 import {
   dataUserSuccess,
   putDataError,
   onInputChange,
   onLoading
 } from '../actions/actions';
-import axios from 'axios';
 
 function* getUsers(action) {
   try {
-    let response;
+    // let response;
 
     if (action.payload.query) {
-      response = yield call(
+      const response = yield call(
         axios.get,
         `https://api.github.com/search/users?q=${action.payload.query}`
       );

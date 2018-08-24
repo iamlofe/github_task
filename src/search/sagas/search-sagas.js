@@ -4,14 +4,11 @@ import axios from 'axios';
 import {
   dataUserSuccess,
   putDataError,
-  onInputChange,
-  onLoading
-} from '../actions/actions';
+  onInputChange
+} from '../actions/search-actions';
 
 function* getUsers(action) {
   try {
-    // let response;
-
     if (action.payload.query) {
       const response = yield call(
         axios.get,
@@ -25,9 +22,11 @@ function* getUsers(action) {
     yield put(putDataError(e.message));
   }
 }
+
 function* watchUsers() {
   yield takeLatest(onInputChange, getUsers);
 }
+
 export default function*() {
   yield fork(watchUsers);
 }

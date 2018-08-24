@@ -1,6 +1,10 @@
 import { handleActions } from 'redux-actions';
 import searchRecord from '../records/records';
-import { onInputChange, dataUserSuccess, onLoading } from '../actions/actions';
+import {
+  onInputChange,
+  dataUserSuccess,
+  onLoading
+} from '../actions/search-actions';
 import { List } from 'immutable';
 
 export default handleActions(

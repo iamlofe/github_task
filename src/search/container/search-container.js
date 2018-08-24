@@ -1,7 +1,9 @@
-import Search from '../components/search';
 import { connect } from 'react-redux';
-import { onInputChange } from '../actions/actions';
 import { debounce } from 'lodash';
+
+import Search from '../components/search/search';
+import { onInputChange } from '../actions/search-actions';
+import { durationDelayRequest } from '../../main/constants/app-constants';
 
 export default connect(
   state => ({
@@ -10,6 +12,9 @@ export default connect(
     users: state.searchReducer.get('users')
   }),
   dispatch => ({
-    onInputChange: debounce(value => dispatch(onInputChange(value)), 500)
+    onInputChange: debounce(
+      value => dispatch(onInputChange(value)),
+      durationDelayRequest
+    )
   })
 )(Search);

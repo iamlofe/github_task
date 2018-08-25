@@ -1,14 +1,15 @@
 import React from 'react';
 import './search.css';
-import { Input, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import {Input, Button} from 'antd';
+import {Link} from 'react-router-dom';
 
 class Search extends React.PureComponent {
   inputChange = e => {
+    console.log(this.props);
     this.props.onInputChange(e.target.value);
   };
   render() {
-    const { users } = this.props;
+    const {users} = this.props;
 
     return (
       <div className="search-container">
@@ -26,21 +27,23 @@ class Search extends React.PureComponent {
           </div>
           <div className="search-container__result">
             {users.length
-              ? users.map(item => (
+              ? users.map(user => (
                   <Link
-                    key={item.id}
-                    to={`/user/${item.id}`}
+                    key={user.get('id')}
+                    to={`/user/${user.get('id')}`}
                     id="search-container__link"
                   >
                     <div className="search-container__people">
                       <div className="search-container__people-container-image">
                         <div
                           className="search-container__people-image"
-                          style={{ backgroundImage: `url(${item.avatar_url})` }}
+                          style={{
+                            backgroundImage: `url(${user.get('avatar_url')})`
+                          }}
                         />
                       </div>
                       <div className="search-container__people-login">
-                        {item.login}
+                        {user.get('login')}
                       </div>
                     </div>
                   </Link>

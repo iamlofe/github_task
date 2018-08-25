@@ -1,13 +1,12 @@
-import { connect } from 'react-redux';
-import { debounce } from 'lodash';
+import {connect} from 'react-redux';
+import {debounce} from 'lodash';
 
 import Search from '../components/search/search';
-import { onInputChange } from '../actions/search-actions';
-import { durationDelayRequest } from '../../main/constants/app-constants';
+import {onInputChange} from '../actions/search-actions';
+import {durationDelayRequest} from '../../main/constants/app-constants';
 
 export default connect(
   state => ({
-    isLoading: state.searchReducer.get('isLoading'),
     query: state.searchReducer.get('query'),
     users: state.searchReducer.get('users')
   }),

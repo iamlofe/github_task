@@ -7,10 +7,8 @@ import {
   putDataError,
   onInputChange
 } from '../actions/search-actions';
-import {
-  requestSearch,
-  requestForOneUser
-} from '../controllers/request-controller';
+import {requestSearch} from '../controllers/request-controller';
+import {watchCurrentUser} from '../../profile/sagas/profile-saga';
 
 function* getUsers(action) {
   try {
@@ -25,19 +23,11 @@ function* getUsers(action) {
   }
 }
 
-function* getOneUser(action) {
-  try {
-    const user = yield call(requestForOneUser, action.payload.login);
-    // yield(data)
-  } catch (e) {
-    yield put(putDataError(e.message));
-  }
-}
-
 function* watchUsers() {
   yield takeLatest(onInputChange, getUsers);
 }
 
 export default function*() {
   yield fork(watchUsers);
+  yield fork(watchCurrentUser);
 }

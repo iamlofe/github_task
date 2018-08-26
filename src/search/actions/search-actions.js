@@ -9,8 +9,3 @@ export const putDataError = createAction('PUT_DATA_ERROR', error => ({
 export const onInputChange = createAction('INPUT_QUERY', query => ({
   query
 }));
-
-export const dataCurrentUserSuccess = createAction(
-  'PUT_CURRENT_USER',
-  login => ({login})
-);

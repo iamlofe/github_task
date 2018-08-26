@@ -30,7 +30,7 @@ class Search extends React.PureComponent {
               ? users.map(user => (
                   <Link
                     key={user.get('id')}
-                    to={`/user/${user.get('id')}`}
+                    to={`/user/${user.get('login')}`}
                     id="search-container__link"
                   >
                     <div className="search-container__people">

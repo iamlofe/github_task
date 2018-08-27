@@ -12,3 +12,11 @@ export const requestForRepos = username =>
   axios
     .get(`https://api.github.com/users/${username}/repos`)
     .then(response => response.data);
+
+export const ReguestIssues = (username, repoName) => {
+  console.log(username);
+  console.log(repoName);
+  return axios
+    .get(`https://api.github.com/repos/${username}/${repoName}/issues`)
+    .then(response => response);
+};

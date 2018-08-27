@@ -10,7 +10,8 @@ import {
 } from '../actions/profile-actions';
 import {
   requestForOneUser,
-  requestForRepos
+  requestForRepos,
+  ReguestIssues
 } from '../controller/profile-controller';
 
 import { putDataError } from '../../search/actions/search-actions';
@@ -21,6 +22,8 @@ function* getCurrentUser(action) {
     yield put(statusLoading(true));
     const repos = yield call(requestForRepos, action.payload.login);
     const currentUser = yield call(requestForOneUser, action.payload.login);
+    const issues = yield call(ReguestIssues, currentUser.login, repos[22].name);
+    console.log(issues);
     yield put(dataCurrentUserSuccess(RecordUser.parse(currentUser)));
     yield put(
       dataReposSuccess(repos.map(repo => Map(RecordRepos.parse(repo))))

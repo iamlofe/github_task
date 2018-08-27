@@ -14,3 +14,5 @@ export const statusLoading = createAction('STATUS_LOADING', status => ({
 export const dataReposSuccess = createAction('DATA_REPOS_SUCCESS', repos => ({
   repos
 }));
+
+export const dataIssues = createAction('DATA_ISSUES', issues => ({ issues }));

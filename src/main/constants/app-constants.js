@@ -1,7 +1,7 @@
 import Search from '../../search/container/search-container';
 import Profile from '../../profile/container/container';
 
-export const ROUTE = [
+export const ROUTES = [
   {
     path: '/search',
     component: Search,

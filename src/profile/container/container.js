@@ -6,8 +6,8 @@ import { idUserQuery } from '../actions/profile-actions';
 export default connect(
   state => ({
     user: state.userReducer.get('user'),
-    loading: state.userReducer.get('loading'),
-    repos: state.reposReducer.get('repos')
+    repos: state.reposReducer.get('repos'),
+    isLoading: state.userReducer.get('isLoading')
   }),
   dispatch => ({
     onLoadDataCurrentUser: login => dispatch(idUserQuery(login))

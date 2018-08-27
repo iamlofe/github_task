@@ -2,7 +2,7 @@ import { Record } from 'immutable';
 
 const User = new Record({
   user: null,
-  loading: null,
+  isLoading: null,
   login: null,
   avatar_url: null
 });

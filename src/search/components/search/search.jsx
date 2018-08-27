@@ -1,15 +1,15 @@
 import React from 'react';
-import './search.css';
-import {Input, Button} from 'antd';
-import {Link} from 'react-router-dom';
+import { Input, Button } from 'antd';
+import { Link } from 'react-router-dom';
+
+import './search.scss';
 
 class Search extends React.PureComponent {
   inputChange = e => {
-    console.log(this.props);
     this.props.onInputChange(e.target.value);
   };
   render() {
-    const {users} = this.props;
+    const { users } = this.props;
 
     return (
       <div className="search-container">
@@ -26,7 +26,7 @@ class Search extends React.PureComponent {
             <Button className="search-container__button">Search</Button>
           </div>
           <div className="search-container__result">
-            {users.length
+            {users.size
               ? users.map(user => (
                   <Link
                     key={user.get('id')}

@@ -1,5 +1,5 @@
 import React from 'react';
-import './profile.css';
+import './profile.scss';
 
 class Profile extends React.PureComponent {
   componentDidMount() {
@@ -10,7 +10,7 @@ class Profile extends React.PureComponent {
   };
   render() {
     const { user, repos } = this.props;
-    if (this.props.loading) {
+    if (this.props.isLoading) {
       return <div />;
     }
     return (
@@ -22,12 +22,13 @@ class Profile extends React.PureComponent {
             style={{ backgroundImage: `url(${user.get('avatar_url')})` }}
           />
           <div className="profile__login">{user.get('login')}</div>
-          {repos.map(repo => (
-            <div className="profile__info" key={repo.get('name')}>
-              <div className="profile__nameRepo">{repo.get('name')}</div>
-              <div className="profile__descRepo">{repo.get('descRepo')}</div>
-            </div>
-          ))}
+          {repos &&
+            repos.map(repo => (
+              <div className="profile__info" key={repo.get('name')}>
+                <div className="profile__nameRepo">{repo.get('name')}</div>
+                <div className="profile__descRepo">{repo.get('descRepo')}</div>
+              </div>
+            ))}
         </div>
       </div>
     );

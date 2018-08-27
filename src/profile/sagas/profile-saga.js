@@ -1,36 +1,27 @@
-import { call, put, takeLatest, fork } from 'redux-saga/effects';
-import axios from 'axios';
-import { List, Map } from 'immutable';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
 
 import {
   dataCurrentUserSuccess,
   idUserQuery,
-  statusLoading,
   dataReposSuccess
 } from '../actions/profile-actions';
 import {
   requestForOneUser,
-  requestForRepos,
-  ReguestIssues
-} from '../controller/profile-controller';
+  requestForRepos
+} from '../controllers/profile-controllers';
 
-import { putDataError } from '../../search/actions/search-actions';
-import { RecordUser, RecordRepos } from '../records/user-record';
+import { onGetDataRequestError } from '../../search/actions/search-actions';
 
 function* getCurrentUser(action) {
   try {
-    yield put(statusLoading(true));
-    const repos = yield call(requestForRepos, action.payload.login);
-    const currentUser = yield call(requestForOneUser, action.payload.login);
-    const issues = yield call(ReguestIssues, currentUser.login, repos[22].name);
-    console.log(issues);
-    yield put(dataCurrentUserSuccess(RecordUser.parse(currentUser)));
-    yield put(
-      dataReposSuccess(repos.map(repo => Map(RecordRepos.parse(repo))))
-    );
-    yield put(statusLoading(false));
+    const [repos, currentUser] = yield all([
+      call(requestForRepos, action.payload.login),
+      call(requestForOneUser, action.payload.login)
+    ]);
+    yield put(dataCurrentUserSuccess(currentUser));
+    yield put(dataReposSuccess(repos));
   } catch (e) {
-    yield put(putDataError(e.message));
+    yield put(onGetDataRequestError(e.message));
   }
 }
 

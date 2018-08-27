@@ -2,9 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import Main from './components/main';
-import { store } from './store/index';
+import createStore from './store';
 
 import 'antd/dist/antd.css';
+
+const store = createStore();
 
 export default () => (
   <Provider store={store}>

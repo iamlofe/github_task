@@ -1,12 +1,13 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Profile from '../../profile/components/profile/profile';
 
-import {idUserQuery} from '../actions/profile-actions';
+import { idUserQuery } from '../actions/profile-actions';
 
 export default connect(
   state => ({
-    user: state.profileReducer.get('user'),
-    loading: state.profileReducer.get('loading')
+    user: state.userReducer.get('user'),
+    loading: state.userReducer.get('loading'),
+    repos: state.reposReducer.get('repos')
   }),
   dispatch => ({
     onLoadDataCurrentUser: login => dispatch(idUserQuery(login))

@@ -1,13 +1,14 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 
-import userRecord from '../records/user-record';
+import { RecordRepos, RecordUser } from '../records/user-record';
 import {
   idUserQuery,
   dataCurrentUserSuccess,
+  dataReposSuccess,
   statusLoading
 } from '../actions/profile-actions';
 
-export default handleActions(
+export const userReducer = handleActions(
   {
     [idUserQuery]: (state, action) => state.set('login', action.payload.login),
     [dataCurrentUserSuccess]: (state, action) =>
@@ -15,9 +16,15 @@ export default handleActions(
     [statusLoading]: (state, action) =>
       state.set('loading', action.payload.status)
   },
-  new userRecord({
-    login: '',
-    user: {},
+  new RecordUser({
     loading: true
   })
+);
+
+export const reposReducer = handleActions(
+  {
+    [dataReposSuccess]: (state, action) =>
+      state.set('repos', action.payload.repos)
+  },
+  new RecordRepos({})
 );

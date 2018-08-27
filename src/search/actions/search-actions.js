@@ -1,9 +1,9 @@
-import {createAction} from 'redux-actions';
+import { createAction } from 'redux-actions';
 
-export const dataUserSuccess = createAction('PUT_DATA_USERS', users => ({
+export const dataUserSuccess = createAction('DATA_USERS_SUCCESS', users => ({
   users
 }));
-export const putDataError = createAction('PUT_DATA_ERROR', error => ({
+export const putDataError = createAction('DATA_USERS_ERROR', error => ({
   error
 }));
 export const onInputChange = createAction('INPUT_QUERY', query => ({

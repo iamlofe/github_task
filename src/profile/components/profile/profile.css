@@ -24,6 +24,7 @@
 
 .profile__info {
 	display: flex;
+	border-bottom: 2px solid #fff;
 }
 
 .profile__nameRepo {

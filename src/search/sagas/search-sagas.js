@@ -1,14 +1,14 @@
-import {call, put, takeLatest, fork} from 'redux-saga/effects';
+import { call, put, takeLatest, fork } from 'redux-saga/effects';
 import axios from 'axios';
-import {List, Map} from 'immutable';
+import { List, Map } from 'immutable';
 
 import {
   dataUserSuccess,
   putDataError,
   onInputChange
 } from '../actions/search-actions';
-import {requestSearch} from '../controllers/request-controller';
-import {watchCurrentUser} from '../../profile/sagas/profile-saga';
+import { requestSearch } from '../controllers/request-controller';
+import { watchCurrentUser } from '../../profile/sagas/profile-saga';
 
 function* getUsers(action) {
   try {

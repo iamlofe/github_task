@@ -5,24 +5,29 @@ class Profile extends React.PureComponent {
   componentDidMount() {
     this.props.onLoadDataCurrentUser(this.props.match.params.id);
   }
+  test = () => {
+    console.log(this.props);
+  };
   render() {
-    const {user} = this.props;
+    const { user, repos } = this.props;
     if (this.props.loading) {
       return <div />;
     }
     return (
       <div className="profile">
-        <div className="profile__main" onClick={this.click}>
+        <div className="profile__main" onClick={this.test}>
           <div
             className="profile__avatar"
             onClick={this.click}
-            style={{backgroundImage: `url(${user.get('avatar_url')})`}}
+            style={{ backgroundImage: `url(${user.get('avatar_url')})` }}
           />
           <div className="profile__login">{user.get('login')}</div>
-          <div className="profile__info">
-            <div className="profile__nameRepo">dwdw</div>
-            <div className="profile__descRepo">dwdw</div>
-          </div>
+          {repos.map(repo => (
+            <div className="profile__info" key={repo.get('name')}>
+              <div className="profile__nameRepo">{repo.get('name')}</div>
+              <div className="profile__descRepo">{repo.get('descRepo')}</div>
+            </div>
+          ))}
         </div>
       </div>
     );

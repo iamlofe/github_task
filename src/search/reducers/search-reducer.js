@@ -1,7 +1,7 @@
-import {handleActions} from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import searchRecord from '../records/records';
-import {onInputChange, dataUserSuccess} from '../actions/search-actions';
-import {List} from 'immutable';
+import { onInputChange, dataUserSuccess } from '../actions/search-actions';
+import { List } from 'immutable';
 
 export default handleActions(
   {
@@ -12,7 +12,6 @@ export default handleActions(
   },
   new searchRecord({
     query: '',
-    users: List(),
-    isLoading: false
+    users: List()
   })
 );

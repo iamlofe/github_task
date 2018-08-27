@@ -1,8 +1,8 @@
-import {Route, Switch, Redirect, Router} from 'react-router-dom';
+import { Route, Switch, Redirect, Router } from 'react-router-dom';
 import React from 'react';
 
-import {ROUTE} from '../constants/app-constants';
-import {history} from '../store/index';
+import { ROUTE } from '../constants/app-constants';
+import { history } from '../store/index';
 
 class Main extends React.PureComponent {
   render() {
@@ -16,7 +16,7 @@ class Main extends React.PureComponent {
               render={props => <route.component {...props} />}
             />
           ))}
-          {/* <Redirect to="/search" /> */}
+          <Redirect from="*" to="/search" />
         </Switch>
       </Router>
     );

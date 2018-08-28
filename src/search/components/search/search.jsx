@@ -18,7 +18,6 @@ class Search extends React.PureComponent {
             <div className="search-container__title">
               <h1>GITHUB BROWSER</h1>
             </div>
-
             <Input
               placeholder="Input username..."
               onChange={this.inputChange}

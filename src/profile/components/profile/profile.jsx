@@ -9,7 +9,7 @@ class Profile extends React.PureComponent {
     console.log(this.props);
   };
   render() {
-    const { user, repos } = this.props;
+    const { user, repos, lengthIssues } = this.props;
     if (this.props.isLoading) {
       return <div />;
     }
@@ -23,10 +23,12 @@ class Profile extends React.PureComponent {
           />
           <div className="profile__login">{user.get('login')}</div>
           {repos &&
-            repos.map(repo => (
+            repos.map((repo, i) => (
               <div className="profile__info" key={repo.get('name')}>
                 <div className="profile__nameRepo">{repo.get('name')}</div>
                 <div className="profile__descRepo">{repo.get('descRepo')}</div>
+
+                <div className="profile__issues">{lengthIssues.get(i)}</div>
               </div>
             ))}
         </div>

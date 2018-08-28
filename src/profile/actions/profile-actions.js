@@ -5,10 +5,12 @@ export const dataCurrentUserSuccess = createAction(
   user => ({ user })
 );
 
-export const idUserQuery = createAction('QUERY_USER', login => ({ login }));
+export const getDataUser = createAction('QUERY_USER', login => ({ login }));
 
 export const dataReposSuccess = createAction('DATA_REPOS_SUCCESS', repos => ({
   repos
 }));
 
-export const dataIssues = createAction('DATA_ISSUES', issues => ({ issues }));
+export const getLenghtIssues = createAction('DATA_ISSUES', issues => ({
+  issues
+}));

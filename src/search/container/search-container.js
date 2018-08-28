@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import Search from '../components/search/search';
-import { onGetDataRequest } from '../actions/search-actions';
+import { getDataRequest } from '../actions/search-actions';
 import { durationDelayRequest } from '../../main/constants/app-constants';
 
 export default connect(
@@ -12,7 +12,7 @@ export default connect(
   }),
   dispatch => ({
     onInputChange: debounce(
-      value => dispatch(onGetDataRequest(value)),
+      value => dispatch(getDataRequest(value)),
       durationDelayRequest
     )
   })

@@ -1,35 +1,33 @@
 .profile {
 	display: flex;
 	justify-content: center;
-}
-
-.profile__main {
-	padding: 10px;
-	border-radius: 5px;
-	background: #e8e8e8;
-}
-
-.profile__avatar {
-	width: 100px;
-	height: 100px;
-	background-position: center;
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
-.profile__login {
-	border-bottom: 2px solid #f5f5f5;
-}
-
-.profile__info {
-	display: flex;
-	border-bottom: 2px solid #fff;
-}
-
-.profile__nameRepo {
-	flex: 1 1;
-}
-
-.profile__descRepo {
-	flex: 1 1;
+	&__main {
+		width: 50%;
+		padding: 10px;
+		border-radius: 5px;
+		background: #e8e8e8;
+	}
+	&__avatar {
+		width: 100px;
+		height: 100px;
+		margin: auto;
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	&__login {
+		border-bottom: 2px solid #f5f5f5;
+	}
+	&__info {
+		display: flex;
+		border-bottom: 2px solid #fff;
+	}
+	&__login-title {
+		text-align: center;
+		margin: 0;
+	}
+	&__nameRepo,
+	&__descRepo {
+		flex: 1 1;
+	}
 }

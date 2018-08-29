@@ -8,7 +8,8 @@ import { durationDelayRequest } from '../../main/constants/app-constants';
 export default connect(
   state => ({
     query: state.searchReducer.get('query'),
-    users: state.searchReducer.get('users')
+    users: state.searchReducer.get('users'),
+    error: state.searchReducer.get('error')
   }),
   dispatch => ({
     onInputChange: debounce(

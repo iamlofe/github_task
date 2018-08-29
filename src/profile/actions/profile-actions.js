@@ -14,3 +14,10 @@ export const dataReposSuccess = createAction('DATA_REPOS_SUCCESS', repos => ({
 export const getLenghtIssues = createAction('DATA_ISSUES', issues => ({
   issues
 }));
+
+export const getRequestDataError = createAction(
+  'DATA_REQUEST_ERROR',
+  error => ({
+    error
+  })
+);

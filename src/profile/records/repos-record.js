@@ -1,17 +1,18 @@
 import { Record } from 'immutable';
 
 const Repos = new Record({
-  repos: null,
   name: null,
-  descRepo: null
+  repos: null,
+  descRepo: null,
+  reposError: null,
+  isLoadingRepos: null
 });
 
 export class RecordRepos extends Repos {
   static parse(repo) {
-    const infoRepo = Repos({
+    return Repos({
       name: repo.name,
       descRepo: repo.description
     });
-    return infoRepo;
   }
 }

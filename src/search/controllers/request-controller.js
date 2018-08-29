@@ -3,7 +3,7 @@ import { List } from 'immutable';
 import ListUsers from '../records/records';
 import axios from '../../main/connect-api/connect-api';
 
-export const requestSearch = login =>
+export const requestSearchUsers = login =>
   axios
     .get(`/search/users?q=${login}`)
     .then(

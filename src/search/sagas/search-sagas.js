@@ -5,13 +5,13 @@ import {
   getDataRequestError,
   getDataRequest
 } from '../actions/search-actions';
-import { requestSearch } from '../controllers/request-controller';
+import { requestSearchUsers } from '../controllers/request-controller';
 import { List } from 'immutable';
 
 function* getUsers(action) {
   try {
     if (action.payload.query) {
-      const users = yield call(requestSearch, action.payload.query);
+      const users = yield call(requestSearchUsers, action.payload.query);
       yield put(getDataRequestSuccess(users));
     } else {
       yield put(getDataRequestSuccess(new List()));

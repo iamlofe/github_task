@@ -1,13 +1,13 @@
 import { createAction } from 'redux-actions';
 
 export const getDataRequestSuccess = createAction(
-  'GET_DATA_USERS_REQUEST_SUCCESS',
+  'GET_DATA_USERS_SUCCESS',
   users => ({
     users
   })
 );
 export const getDataRequestError = createAction(
-  'GET_DATA_USERS_REQUEST_ERROR',
+  'GET_DATA_USERS_ERROR',
   error => ({
     error
   })

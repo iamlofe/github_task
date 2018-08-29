@@ -1,10 +1,9 @@
 import { handleActions } from 'redux-actions';
-import { List } from 'immutable';
 
-import { RecordUser } from '../records/user-record';
+import { CurrentUserRecord } from '../records/user-record';
 import {
   getDataUser,
-  getRequestDataError,
+  dataReposSuccess,
   dataCurrentUserSuccess
 } from '../actions/profile-actions';
 import { clearStore } from '../../main/actions/main-actions';
@@ -14,23 +13,17 @@ export const userReducer = handleActions(
     [getDataUser]: (state, action) =>
       state.set('login', action.payload.login).set('isLoadingUser', true),
     [dataCurrentUserSuccess]: (state, action) =>
-      state.set('user', action.payload.user).set('isLoadingUser', false),
-    [getRequestDataError]: (state, action) =>
-      state.set('userError', action.payload.error).set('isLoadingUser', false),
+      state
+        .set('avatar_url', action.payload.user.get('avatar_url'))
+        .set('isLoadingUser', false),
+    [dataReposSuccess]: (state, action) =>
+      state.set('repos', action.payload.repos),
     [clearStore]: state =>
-      new RecordUser({
-        user: null,
-        login: null,
-        userError: null,
-        avatar_url: null,
+      new CurrentUserRecord({
         isLoadingUser: true
       })
   },
-  new RecordUser({
-    user: null,
-    login: null,
-    userError: null,
-    avatar_url: null,
+  new CurrentUserRecord({
     isLoadingUser: true
   })
 );

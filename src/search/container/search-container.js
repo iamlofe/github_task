@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import Search from '../components/search/search';
+
 import { getDataRequest } from '../actions/search-actions';
+
 import { durationDelayRequest } from '../../main/constants/app-constants';
 
 export default connect(

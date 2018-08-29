@@ -1,23 +1,24 @@
+import { List } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
-  getDataRequestSuccess,
-  getDataRequestError,
+  getDataUsersSuccess,
+  getDataUsersError,
   getDataRequest
 } from '../actions/search-actions';
+
 import { requestSearchUsers } from '../controllers/request-controller';
-import { List } from 'immutable';
 
 function* getUsers(action) {
   try {
     if (action.payload.query) {
       const users = yield call(requestSearchUsers, action.payload.query);
-      yield put(getDataRequestSuccess(users));
+      yield put(getDataUsersSuccess(users));
     } else {
-      yield put(getDataRequestSuccess(new List()));
+      yield put(getDataUsersSuccess(new List()));
     }
   } catch (e) {
-    yield put(getDataRequestError(e.message));
+    yield put(getDataUsersError(e.message));
   }
 }
 

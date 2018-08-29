@@ -5,19 +5,16 @@ export const dataCurrentUserSuccess = createAction(
   user => ({ user })
 );
 
-export const getDataUser = createAction('QUERY_USER', login => ({ login }));
+export const getDataUser = createAction('GET_DATA_USER', login => ({ login }));
 
 export const dataReposSuccess = createAction('DATA_REPOS_SUCCESS', repos => ({
   repos
 }));
 
-export const getLenghtIssues = createAction('DATA_ISSUES', issues => ({
+export const getLenghtIssues = createAction('GET_LENGTH_ISSUES', issues => ({
   issues
 }));
 
-export const getRequestDataError = createAction(
-  'DATA_REQUEST_ERROR',
-  error => ({
-    error
-  })
-);
+export const getDataUserError = createAction('DATA_DATA_USER_ERROR', error => ({
+  error
+}));

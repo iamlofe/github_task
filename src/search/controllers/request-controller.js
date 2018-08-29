@@ -1,7 +1,8 @@
 import { List } from 'immutable';
 
 import ListUsers from '../records/records';
-import axios from '../../main/connect-api/connect-api';
+
+import axios from '../../main/tools/request-tool';
 
 export const requestSearchUsers = login =>
   axios

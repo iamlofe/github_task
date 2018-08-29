@@ -1,7 +1,8 @@
 import { Route, Switch, Redirect, Router } from 'react-router-dom';
 import React from 'react';
 
-import { ROUTES } from '../constants/app-constants';
+import { ROUTES } from '../constants/app-routes';
+
 import { history } from '../history/history';
 
 class Main extends React.PureComponent {

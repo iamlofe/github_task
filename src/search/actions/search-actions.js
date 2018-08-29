@@ -1,17 +1,17 @@
 import { createAction } from 'redux-actions';
 
-export const getDataRequestSuccess = createAction(
+export const getDataUsersSuccess = createAction(
   'GET_DATA_USERS_SUCCESS',
   users => ({
     users
   })
 );
-export const getDataRequestError = createAction(
+export const getDataUsersError = createAction(
   'GET_DATA_USERS_ERROR',
   error => ({
     error
   })
 );
-export const getDataRequest = createAction('INPUT_QUERY', query => ({
+export const getDataRequest = createAction('GET_DATA_REQUEST', query => ({
   query
 }));

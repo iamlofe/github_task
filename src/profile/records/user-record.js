@@ -1,16 +1,15 @@
-import { Record } from 'immutable';
+import { Record, List } from 'immutable';
 
 const User = new Record({
-  user: null,
   login: null,
-  userError: null,
   avatar_url: null,
-  isLoadingUser: null
+  isLoadingUser: true,
+  repos: new List()
 });
 
-export class RecordUser extends User {
+export class CurrentUserRecord extends User {
   static parse(user) {
-    return User({
+    return new CurrentUserRecord({
       login: user.login,
       avatar_url: user.avatar_url
     });

@@ -1,4 +1,9 @@
 import React from 'react';
+import { Button } from 'antd';
+import PropTypes from 'prop-types';
+import { List } from 'immutable';
+import { history } from '../../../main/history/history';
+
 import './profile.scss';
 
 class Profile extends React.PureComponent {
@@ -9,18 +14,16 @@ class Profile extends React.PureComponent {
   componentWillUnmount() {
     this.props.onClearStore();
   }
+  moveBack = () => {
+    history.push('/search');
+  };
   render() {
-    const {
-      user,
-      repos,
-      issues,
-      isLoadingUser,
-      isLoadingRepos,
-      isLoadingIssues
-    } = this.props;
-    if (isLoadingUser && isLoadingIssues && isLoadingRepos) {
+    const { avatar_url, login, repos, isLoadingUser } = this.props;
+
+    if (isLoadingUser) {
       return <div />;
     }
+
     return (
       <div className="profile">
         <div className="profile__main" onClick={this.test}>
@@ -29,30 +32,31 @@ class Profile extends React.PureComponent {
               className="profile__avatar"
               onClick={this.click}
               style={{
-                backgroundImage: `url(${user.get('avatar_url')})`
+                backgroundImage: `url(${avatar_url})`
               }}
             />
           )}
           <div className="profile__login">
             <h2 className="profile__login-title">
-              {!isLoadingUser ? user.get('login') : '...'}
+              {!isLoadingUser ? login : '...'}
             </h2>
           </div>
-          {repos
+          <Button onClick={this.moveBack} className="profile__button-back">
+            Back
+          </Button>
+          {repos.count()
             ? repos.map((repo, i) => (
-                <div className="profile__info" key={repo.get('name')}>
-                  <div className="profile__nameRepo">{repo.get('name')}</div>
+                <div className="profile__info" key={i}>
+                  <div className="profile__nameRepo">{repo.name}</div>
                   <div className="profile__descRepo">
-                    {repo.get('descRepo') ? (
-                      repo.get('descRepo')
+                    {repo.descRepo ? (
+                      repo.descRepo
                     ) : (
                       <small>No description... :(</small>
                     )}
                   </div>
 
-                  <div className="profile__issues">
-                    {!isLoadingIssues ? issues.get(i) : '.'}
-                  </div>
+                  <div className="profile__issues">{}</div>
                 </div>
               ))
             : ''}
@@ -61,4 +65,11 @@ class Profile extends React.PureComponent {
     );
   }
 }
+
+Profile.propTypes = {
+  isLoadingUser: PropTypes.bool.isRequired,
+  avatar_url: PropTypes.string,
+  login: PropTypes.string,
+  repos: PropTypes.instanceOf(List)
+};
 export default Profile;

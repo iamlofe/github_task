@@ -1,16 +1,14 @@
 import { Record } from 'immutable';
 
-const Repos = new Record({
+const RepoRecord = new Record({
   name: null,
-  repos: null,
-  descRepo: null,
-  reposError: null,
-  isLoadingRepos: null
+  issues: null,
+  descRepo: null
 });
 
-export class RecordRepos extends Repos {
+export class ReposRecord extends RepoRecord {
   static parse(repo) {
-    return Repos({
+    return new ReposRecord({
       name: repo.name,
       descRepo: repo.description
     });

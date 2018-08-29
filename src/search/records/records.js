@@ -6,7 +6,7 @@ const Users = Record({
   login: null,
   avatar_url: null,
   id: null,
-  error: null
+  isLoading: null
 });
 
 export default class ListUsers extends Users {

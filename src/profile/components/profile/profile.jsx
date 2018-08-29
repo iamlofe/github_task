@@ -51,7 +51,7 @@ class Profile extends React.PureComponent {
                   </div>
 
                   <div className="profile__issues">
-                    {isLoadingIssues ? issues.get(i) : '.'}
+                    {!isLoadingIssues ? issues.get(i) : '.'}
                   </div>
                 </div>
               ))

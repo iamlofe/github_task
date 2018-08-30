@@ -11,10 +11,15 @@ export const dataReposSuccess = createAction('DATA_REPOS_SUCCESS', repos => ({
   repos
 }));
 
-export const getLenghtIssues = createAction('GET_LENGTH_ISSUES', issues => ({
-  issues
-}));
-
 export const getDataUserError = createAction('DATA_DATA_USER_ERROR', error => ({
   error
+}));
+
+export const getLenghtIssues = createAction(
+  'GET_LENGTH_ISSUES',
+  count => count
+);
+
+export const getDataIssues = createAction('GET_DATA_NAME_REPO', repo => ({
+  repo
 }));

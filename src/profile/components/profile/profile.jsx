@@ -17,6 +17,9 @@ class Profile extends React.PureComponent {
   moveBack = () => {
     history.push('/search');
   };
+  test = () => {
+    console.log(this.props);
+  };
   render() {
     const { avatar_url, login, repos, isLoadingUser } = this.props;
 
@@ -56,7 +59,7 @@ class Profile extends React.PureComponent {
                     )}
                   </div>
 
-                  <div className="profile__issues">{}</div>
+                  <div className="profile__issues">{repo.issues}</div>
                 </div>
               ))
             : ''}

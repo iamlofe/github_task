@@ -4,8 +4,6 @@ import {
   takeLatest,
   all,
   select,
-  fork,
-  take,
   takeEvery
 } from 'redux-saga/effects';
 
@@ -14,61 +12,65 @@ import {
   getDataUserError,
   dataReposSuccess,
   dataCurrentUserSuccess,
-  getLenghtIssues
-  // getLenghtIssues
+  setIssueCount,
+  setInfoForController
 } from '../actions/profile-actions';
 
 import {
   requestDataUser,
   requestDataRepos,
-  getIssuesData
+  requestCurrentIssues
 } from '../controllers/user-controller';
 
-const getLogin = state => state.userReducer.get('login');
+import { getLoginSelector } from '../selectors/login-selectors';
 
-const getRepos = state => state.userReducer.get('repos');
-function* getCurrentUser({ payload: { login } }) {
+function* getCurrentUserInfo({ payload: { login } }) {
   try {
     const [repos, user] = yield all([
       call(requestDataRepos, login),
       call(requestDataUser, login)
     ]);
-    // const issues = yield call(getRequestIssues, repos, login);
 
     yield all([
       put(dataCurrentUserSuccess(user)),
       put(dataReposSuccess(repos))
-      // put(getLenghtIssues(issues))
     ]);
   } catch (e) {
     yield put(getDataUserError(e.message));
   }
 }
 
-function* getIssues({ payload: { repos } }) {
+function* fetchReposIssues({ payload: { repos } }) {
   try {
-    const username = yield select(getLogin);
-    for (let i = 0; i < repos.count(); i++) {
-      if (repos.getIn([i, 'has_issues'])) {
-        const count = yield call(getIssuesData, {
-          repoName: repos.getIn([i, 'name']),
-          username: username
-        });
-        // put(getLenghtIssues({ nameRepo: repos.getIn([i, 'name']), count }));
-        yield put(getLenghtIssues({ index: i, count }));
-      } else {
-        // put(getLenghtIssues({ nameRepo: repos.getIn([i, 'name']), count: 0 }));
-        yield put(getLenghtIssues({ index: i, count: 0 }));
-      }
-    }
+    const login = yield select(getLoginSelector);
+
+    yield* repos.map((repo, i) =>
+      put(
+        setInfoForController({
+          index: i,
+          login: login,
+          repoName: repo.get('name')
+        })
+      )
+    );
   } catch (e) {
     yield put(getDataUserError(e.message));
   }
 }
-export function* watchCurrentUser() {
-  yield takeLatest(getDataUser, getCurrentUser);
-  yield takeLatest(dataReposSuccess, getIssues);
-  yield takeEvery(getLenghtIssues, getIssues);
 
-  // yield takeEvery();
+function* getIssue({ payload: { login, index, repoName } }) {
+  const count = yield call(requestCurrentIssues, {
+    repoName,
+    login
+  });
+  const currentLogin = yield select(getLoginSelector);
+  if (currentLogin) {
+    yield put(setIssueCount({ index, count }));
+  }
+}
+
+export function* watchCurrentUser() {
+  yield takeLatest(getDataUser, getCurrentUserInfo);
+  yield takeLatest(dataReposSuccess, fetchReposIssues);
+  yield takeEvery(setInfoForController, getIssue);
 }

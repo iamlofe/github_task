@@ -2,11 +2,19 @@ import React from 'react';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
-import { history } from '../../../main/history/history';
+
+import { history } from '../../../main/tools/history-tool';
 
 import './profile.scss';
 
 class Profile extends React.PureComponent {
+  static propTypes = {
+    isLoadingUser: PropTypes.bool.isRequired,
+    avatarUrl: PropTypes.string,
+    login: PropTypes.string,
+    repos: PropTypes.instanceOf(List)
+  };
+
   componentDidMount() {
     this.props.onLoadDataCurrentUser(this.props.match.params.id);
   }
@@ -14,14 +22,13 @@ class Profile extends React.PureComponent {
   componentWillUnmount() {
     this.props.onClearStore();
   }
+
   moveBack = () => {
-    history.push('/search');
+    history.goBack();
   };
-  test = () => {
-    console.log(this.props);
-  };
+
   render() {
-    const { avatar_url, login, repos, isLoadingUser } = this.props;
+    const { avatarUrl, login, repos, isLoadingUser } = this.props;
 
     if (isLoadingUser) {
       return <div />;
@@ -30,19 +37,15 @@ class Profile extends React.PureComponent {
     return (
       <div className="profile">
         <div className="profile__main" onClick={this.test}>
-          {!isLoadingUser && (
-            <div
-              className="profile__avatar"
-              onClick={this.click}
-              style={{
-                backgroundImage: `url(${avatar_url})`
-              }}
-            />
-          )}
+          <div
+            className="profile__avatar"
+            onClick={this.click}
+            style={{
+              backgroundImage: `url(${avatarUrl})`
+            }}
+          />
           <div className="profile__login">
-            <h2 className="profile__login-title">
-              {!isLoadingUser ? login : '...'}
-            </h2>
+            <h2 className="profile__login-title">{login}</h2>
           </div>
           <Button onClick={this.moveBack} className="profile__button-back">
             Back
@@ -69,10 +72,4 @@ class Profile extends React.PureComponent {
   }
 }
 
-Profile.propTypes = {
-  isLoadingUser: PropTypes.bool.isRequired,
-  avatar_url: PropTypes.string,
-  login: PropTypes.string,
-  repos: PropTypes.instanceOf(List)
-};
 export default Profile;

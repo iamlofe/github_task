@@ -9,7 +9,7 @@ export default connect(
   state => ({
     login: state.userReducer.get('login'),
     repos: state.userReducer.get('repos'),
-    avatar_url: state.userReducer.get('avatar_url'),
+    avatarUrl: state.userReducer.get('avatarUrl'),
     isLoadingUser: state.userReducer.get('isLoadingUser')
   }),
   dispatch => ({

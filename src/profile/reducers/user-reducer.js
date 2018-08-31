@@ -5,9 +5,13 @@ import {
   getDataUser,
   dataReposSuccess,
   dataCurrentUserSuccess,
-  getLenghtIssues
+  setIssueCount
 } from '../actions/profile-actions';
 import { clearStore } from '../../main/actions/main-actions';
+
+const initialState = new CurrentUserRecord({
+  isLoadingUser: true
+});
 
 export const userReducer = handleActions(
   {
@@ -15,22 +19,16 @@ export const userReducer = handleActions(
       state.set('login', action.payload.login).set('isLoadingUser', true),
     [dataCurrentUserSuccess]: (state, action) =>
       state
-        .set('avatar_url', action.payload.user.get('avatar_url'))
+        .set('avatarUrl', action.payload.user.get('avatarUrl'))
         .set('isLoadingUser', false),
     [dataReposSuccess]: (state, action) =>
       state.set('repos', action.payload.repos),
-    [getLenghtIssues]: (state, action) => {
-      return state.setIn(
+    [setIssueCount]: (state, action) =>
+      state.setIn(
         ['repos', action.payload.index, 'issues'],
         action.payload.count
-      );
-    },
-    [clearStore]: state =>
-      new CurrentUserRecord({
-        isLoadingUser: true
-      })
+      ),
+    [clearStore]: () => initialState
   },
-  new CurrentUserRecord({
-    isLoadingUser: true
-  })
+  initialState
 );

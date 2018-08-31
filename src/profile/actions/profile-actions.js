@@ -15,11 +15,13 @@ export const getDataUserError = createAction('DATA_DATA_USER_ERROR', error => ({
   error
 }));
 
-export const getLenghtIssues = createAction(
-  'GET_LENGTH_ISSUES',
-  count => count
+// For put information of issues to store
+export const setIssueCount = createAction(
+  'GET_ISSUES_COUNT',
+  issueInfo => issueInfo
 );
-
-export const getDataIssues = createAction('GET_DATA_NAME_REPO', repo => ({
-  repo
-}));
+// Put info to controller
+export const setInfoForController = createAction(
+  'PUT_INFO_CONTROLLER',
+  infoForIssues => infoForIssues
+);

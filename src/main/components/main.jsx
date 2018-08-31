@@ -3,7 +3,7 @@ import React from 'react';
 
 import { ROUTES } from '../constants/app-routes';
 
-import { history } from '../history/history';
+import { history } from '../tools/history-tool';
 
 class Main extends React.PureComponent {
   render() {

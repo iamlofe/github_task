@@ -1,4 +1,3 @@
-import { call, all } from 'redux-saga/effects';
 import { List } from 'immutable';
 
 import axios from '../../main/tools/request-tool';
@@ -12,15 +11,13 @@ export const requestDataUser = username =>
     .then(response => CurrentUserRecord.parse(response.data));
 
 export const requestDataRepos = username =>
-  axios.get(`/users/${username}/repos`).then(response => {
-    console.log(response.data);
-    return new List(response.data.map(repo => ReposRecord.parse(repo)));
-  });
+  axios
+    .get(`/users/${username}/repos`)
+    .then(
+      response => new List(response.data.map(repo => ReposRecord.parse(repo)))
+    );
 
-export const requestDataIssues = (username, repoName) => {};
-
-export const getIssuesData = ({ repoName, username }) => {
-  return axios
-    .get(`/repos/${username}/${repoName}/issues`)
+export const requestCurrentIssues = ({ repoName, login }) =>
+  axios
+    .get(`/repos/${login}/${repoName}/issues`)
     .then(response => response.data.length);
-};

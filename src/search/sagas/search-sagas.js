@@ -1,4 +1,3 @@
-import { List } from 'immutable';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
@@ -9,14 +8,11 @@ import {
 
 import { requestSearchUsers } from '../controllers/request-controller';
 
-function* getUsers(action) {
+function* getUsers({ payload: { query } }) {
   try {
-    if (action.payload.query) {
-      const users = yield call(requestSearchUsers, action.payload.query);
-      yield put(getDataUsersSuccess(users));
-    } else {
-      yield put(getDataUsersSuccess(new List()));
-    }
+    const users = yield call(requestSearchUsers, query);
+
+    yield put(getDataUsersSuccess(users));
   } catch (e) {
     yield put(getDataUsersError(e.message));
   }

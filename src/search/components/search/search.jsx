@@ -7,6 +7,9 @@ import { List } from 'immutable';
 import './search.scss';
 
 class Search extends React.PureComponent {
+  static propTypes = {
+    users: PropTypes.instanceOf(List).isRequired
+  };
   onInputChange = e => {
     this.props.onInputChange(e.target.value);
   };
@@ -39,7 +42,7 @@ class Search extends React.PureComponent {
                         <div
                           className="search-container__people-image"
                           style={{
-                            backgroundImage: `url(${user.get('avatar_url')})`
+                            backgroundImage: `url(${user.get('avatarUrl')})`
                           }}
                         />
                       </div>
@@ -56,8 +59,5 @@ class Search extends React.PureComponent {
     );
   }
 }
-Search.propTypes = {
-  users: PropTypes.instanceOf(List).isRequired
-};
 
 export default Search;
